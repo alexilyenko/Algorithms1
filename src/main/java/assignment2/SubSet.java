@@ -30,7 +30,7 @@ import edu.princeton.cs.introcs.StdOut;
  * CC
  * BB
  */
-public class SubSet {
+public class Subset {
     /**
      * Main method
      *

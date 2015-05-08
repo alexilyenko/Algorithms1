@@ -121,7 +121,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     /**
      * Returns an independent iterator over the elements in this {@code RandomizedQueue} in random sequence.
      *
-     * @return an {@code RandomizedQueueIterator} over the elements in this list in random sequence
+     * @return the {@code RandomizedQueueIterator} over the elements in this queue in random sequence
      */
     public Iterator<Item> iterator() {
         return new RandomizedQueueIterator<>();
