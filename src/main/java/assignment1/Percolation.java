@@ -39,6 +39,7 @@ public class Percolation {
      *
      * @param N grid's side length
      * @see assignment1.utils.PercolationVisualizer
+     * @see WeightedQuickUnionUF#WeightedQuickUnionUF(int)
      */
     public Percolation(int N) {
         this.N = N;
@@ -56,6 +57,7 @@ public class Percolation {
      * @param x column index
      * @return {@code true} if site is opened,
      * {@code false} if it's not
+     * @see #validate(int, int)
      */
     public boolean isOpen(int y, int x) {
         validate(x, y);
@@ -67,6 +69,9 @@ public class Percolation {
      *
      * @param y row index
      * @param x column index
+     * @see #validate(int, int)
+     * @see WeightedQuickUnionUF#union(int, int)
+     * @see #connectIfIsOpened(int, int)
      */
     public void open(int y, int x) {
         validate(x, y);
@@ -96,6 +101,7 @@ public class Percolation {
      * @param x column index
      * @return {@code true} if site is full,
      * {@code false} if it's not
+     * @see WeightedQuickUnionUF#connected(int, int)
      */
     public boolean isFull(int y, int x) {
         validate(x, y);
@@ -107,6 +113,7 @@ public class Percolation {
      *
      * @return {@code true} if the grid percolates,
      * {@code false} if it doesn't
+     * @see WeightedQuickUnionUF#connected(int, int)
      */
     public boolean percolates() {
         return weightedQuickUnionUF.connected(firstReserved, secondReserved);
@@ -117,6 +124,8 @@ public class Percolation {
      *
      * @param first  index of the first site in 1D array
      * @param second index of the second site in 1D array
+     * @see #neighbourIsOpened(int, int)
+     * @see WeightedQuickUnionUF#union(int, int)
      */
     private void connectIfIsOpened(int first, int second) {
         if (neighbourIsOpened(first, second)) {
@@ -145,6 +154,8 @@ public class Percolation {
      *
      * @param x column index
      * @param y row index
+     * @throws IndexOutOfBoundsException if one of the indexes less
+     *                                   or equal to zero or more than grid's side size
      */
     private void validate(int x, int y) {
         if (x <= 0 || x > N || y <= 0 || y > N) {

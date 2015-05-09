@@ -33,7 +33,12 @@ public class PercolationStats {
      *
      * @param N grid side length
      * @param T number of independent experiments
-     * @see assignment1.Percolation
+     * @throws IllegalArgumentException if one of the parameters is less or equal to zero
+     * @see Percolation
+     * @see Percolation#Percolation(int)
+     * @see Percolation#open(int, int)
+     * @see Percolation#percolates()
+     * @see StdRandom#uniform(double, double)
      */
     public PercolationStats(int N, int T) {
         if (N <= 0 || T <= 0) {
@@ -48,8 +53,8 @@ public class PercolationStats {
             while (!percolation.percolates()) {
                 int x = StdRandom.uniform(1, N + 1);
                 int y = StdRandom.uniform(1, N + 1);
-                if (!percolation.isOpen(x, y)) {
-                    percolation.open(x, y);
+                if (!percolation.isOpen(y, x)) {
+                    percolation.open(y, x);
                     numberOfOpenedCells++;
                 }
             }
