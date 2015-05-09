@@ -7,14 +7,14 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
  * using weighted quick union-find algorithm
  *
  * @author Alex Ilyenko
- * @see edu.princeton.cs.algs4.WeightedQuickUnionUF
+ * @see WeightedQuickUnionUF
  */
 public class Percolation {
     /**
      * Variable representing {@code WeightedQuickUnionUF} class
      * which implements weighted quick union-find algorithms
      *
-     * @see edu.princeton.cs.algs4.WeightedQuickUnionUF
+     * @see WeightedQuickUnionUF
      */
     private final WeightedQuickUnionUF weightedQuickUnionUF;
     /**

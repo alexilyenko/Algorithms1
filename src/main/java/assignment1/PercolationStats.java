@@ -9,6 +9,7 @@ import edu.princeton.cs.introcs.StdStats;
  * standard deviation, low and high endpoints of 95% confidence interval
  *
  * @author Alex Ilyenko
+ * @see Percolation
  */
 public class PercolationStats {
     /**
