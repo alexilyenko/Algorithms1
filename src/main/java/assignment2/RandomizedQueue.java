@@ -43,6 +43,21 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     /**
+     * Private constructor that is used by {@code RandomizedQueueIterator} to create its copy
+     *
+     * @param array array from the original {@code RandomizedQueue}
+     * @param count count of the item in original {@code RandomizedQueue}
+     * @see assignment2.RandomizedQueue.RandomizedQueueIterator
+     */
+    @SuppressWarnings("unchecked")
+    private RandomizedQueue(Item[] array, int count) {
+        int length = array.length;
+        items = (Item[]) new Object[length];
+        System.arraycopy(array, 0, items, 0, length);
+        this.count = count;
+    }
+
+    /**
      * Checks if {@code RandomizedQueue} is empty
      *
      * @return {@code true} for empty {@code RandomizedQueue} and
@@ -122,6 +137,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
      * Returns an independent iterator over the elements in this {@code RandomizedQueue} in random sequence.
      *
      * @return the {@code RandomizedQueueIterator} over the elements in this queue in random sequence
+     * @see assignment2.RandomizedQueue.RandomizedQueueIterator
      */
     public Iterator<Item> iterator() {
         return new RandomizedQueueIterator<>();
@@ -145,30 +161,17 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     /**
-     * Private constructor that is used by {@code RandomizedQueueIterator} to create its copy
-     *
-     * @param array array from the original {@code RandomizedQueue}
-     * @param count count of the item in original {@code RandomizedQueue}
-     */
-    @SuppressWarnings("unchecked")
-    private RandomizedQueue(Item[] array, int count) {
-        int length = array.length;
-        items = (Item[]) new Object[length];
-        System.arraycopy(array, 0, items, 0, length);
-        this.count = count;
-    }
-
-    /**
      * Iterator implementation for {@code RandomizedQueue} for iterating through all its elements in random order
      *
      * @param <T> generic type that is stored in {@code RandomizedQueue}
+     * @see java.util.Iterator
      */
     private class RandomizedQueueIterator<T> implements Iterator<T> {
         /**
          * Copy of the original {@code RandomizedQueue} for iterating through all its elements
          */
         @SuppressWarnings("unchecked")
-        RandomizedQueue<T> randomizedQueue = new RandomizedQueue<>((T[]) items, count);
+        private RandomizedQueue<T> randomizedQueue = new RandomizedQueue<>((T[]) items, count);
 
         /**
          * Returns {@code true} if the iteration has more elements.
@@ -181,7 +184,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         public boolean hasNext() {
             return randomizedQueue.size() > 0;
         }
-
 
         /**
          * Returns the next random element in the iteration.
