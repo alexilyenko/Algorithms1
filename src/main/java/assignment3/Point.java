@@ -17,15 +17,12 @@ public class Point implements Comparable<Point> {
      * @see #slopeTo(Point)
      * @see java.util.Comparator
      */
-    public final Comparator<Point> SLOPE_ORDER = new Comparator<Point>() {
-        @Override
-        public int compare(Point o1, Point o2) {
-            double slope1 = slopeTo(o1);
-            double slope2 = slopeTo(o2);
-            if (slope1 == slope2) return 0;
-            if (slope1 < slope2) return -1;
-            return 1;
-        }
+    public final Comparator<Point> SLOPE_ORDER = (o1, o2) -> {
+        double slope1 = slopeTo(o1);
+        double slope2 = slopeTo(o2);
+        if (slope1 == slope2) return 0;
+        if (slope1 < slope2) return -1;
+        return 1;
     };
     /**
      * x coordinate of the {@code Point}

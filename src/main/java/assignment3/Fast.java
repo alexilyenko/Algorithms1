@@ -12,12 +12,12 @@ import java.util.LinkedList;
  * line segment, printing out any such line segments to standard output and drawing them using standard drawing.
  * To check whether the points p, q, r, and s are collinear, the program checks whether the slopes between p and q,
  * between p and r, and between p and s are all equal.
- * <p/>
+ * <p>
  * The order of growth of the running time of the program is N^2*log N in the worst case and
  * it should use space proportional to N. So you can see that the given program is much faster
  * than {@link assignment3.Brute}. One of the most important changes is self-implemented Merge-Sort and Insertion-Sort
  * algorithms for ordering points according to their slopes.
- * <p/>
+ * <p>
  * The program takes the name of an input file as a command-line argument, reads the input
  * file (see resources folder for examples), prints to standard output the line segments
  * discovered and draws to standard draw the line segments discovered
@@ -50,12 +50,7 @@ public class Fast {
      *
      * @see java.util.Comparator
      */
-    private static final Comparator<Point> NATURAL_ORDER_COMPARATOR = new Comparator<Point>() {
-        @Override
-        public int compare(Point o1, Point o2) {
-            return o1.compareTo(o2);
-        }
-    };
+    private static final Comparator<Point> POINT_NATURAL_ORDER = Point::compareTo;
 
 
     /**
@@ -80,7 +75,7 @@ public class Fast {
         }
 
         StdDraw.setPenRadius(LINE_RADIUS);
-        mergeSort(points, NATURAL_ORDER_COMPARATOR);
+        mergeSort(points, POINT_NATURAL_ORDER);
         Point q, r, s;
         double slopePQ;
         Point[] slopeOrdered;
@@ -102,20 +97,19 @@ public class Fast {
                     while (i + 1 < length && slopePQ == p.slopeTo(slopeOrdered[i + 1])) {
                         segment.addLast(slopeOrdered[++i]);
                     }
-                    StdOut.print(segment.getFirst());
-                    for (int k = 1; k < segment.size(); k++) {
-                        StdOut.print(" -> " + segment.get(k));
-                    }
+                    Point first = segment.pollFirst();
+                    StdOut.print(first);
+                    segment.forEach((point) -> StdOut.print(" -> " + point));
                     StdOut.println();
-                    segment.getFirst().drawTo(segment.getLast());
+                    first.drawTo(segment.getLast());
                     segment.clear();
                 }
 
             }
         }
 
-
     }
+
 
     /**
      * Sorts the array using Merge-Sorting algorithm
@@ -166,7 +160,7 @@ public class Fast {
      * @param <T>   generic data type
      */
     private static <T> void merge(T[] array, T[] aux, int lo, int mid, int hi, Comparator<T> c) {
-        System.arraycopy(array, 0, aux, 0, array.length);
+        System.arraycopy(array, lo, aux, lo, hi + 1);
         int i = lo;
         int j = mid + 1;
         for (int k = lo; k <= hi; k++) {
