@@ -76,7 +76,7 @@ public class Fast {
 
         StdDraw.setPenRadius(LINE_RADIUS);
         mergeSort(points, POINT_NATURAL_ORDER);
-        Point q, r, s;
+        Point q, r, s, first;
         double slopePQ;
         Point[] slopeOrdered;
         LinkedList<Point> segment = new LinkedList<>();
@@ -97,7 +97,7 @@ public class Fast {
                     while (i + 1 < length && slopePQ == p.slopeTo(slopeOrdered[i + 1])) {
                         segment.addLast(slopeOrdered[++i]);
                     }
-                    Point first = segment.pollFirst();
+                    first = segment.pollFirst();
                     StdOut.print(first);
                     segment.forEach((point) -> StdOut.print(" -> " + point));
                     StdOut.println();
@@ -135,7 +135,7 @@ public class Fast {
      * @param <T>   generic data type
      */
     private static <T> void sort(T[] array, T[] aux, int lo, int hi, Comparator<T> c) {
-        if (hi <= lo + CUTOFF) {
+        if (hi <= lo + CUTOFF - 1) {
             insertionSort(array, lo, hi, c);
             return;
         }
@@ -160,7 +160,7 @@ public class Fast {
      * @param <T>   generic data type
      */
     private static <T> void merge(T[] array, T[] aux, int lo, int mid, int hi, Comparator<T> c) {
-        System.arraycopy(array, lo, aux, lo, hi + 1);
+        System.arraycopy(array, lo, aux, lo, hi + 1 - lo);
         int i = lo;
         int j = mid + 1;
         for (int k = lo; k <= hi; k++) {
