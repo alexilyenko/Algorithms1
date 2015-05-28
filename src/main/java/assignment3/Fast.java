@@ -177,7 +177,7 @@ public class Fast {
     }
 
     /**
-     * Sorts the part of the array using Insertion Sort algorithms
+     * Sorts the part of the array using Insertion Sort algorithm
      *
      * @param array      given array for sorting
      * @param lo         low boundary of array's part to be sorted
