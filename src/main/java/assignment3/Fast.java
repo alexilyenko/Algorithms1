@@ -129,8 +129,8 @@ public class Fast {
      *
      * @param array given array for sorting
      * @param aux   auxiliary array for data transferring while sorting
-     * @param lo    low boundary of array's part to be sorted
-     * @param hi    bottom boundary of array's part to be sorted
+     * @param lo    bottom boundary of array's part to be sorted
+     * @param hi    top boundary of array's part to be sorted
      * @param c     given {@code Comparator} used for ordering of the items in array
      * @param <T>   generic data type
      */
@@ -153,9 +153,9 @@ public class Fast {
      *
      * @param array given array to be sorted
      * @param aux   auxiliary array for data transferring while sorting
-     * @param lo    low boundary of the first sorted array's part
-     * @param mid   bottom boundary of the first sorted array's part and low boundary of the second one
-     * @param hi    bottom boundary of the second sorted array's part
+     * @param lo    bottom boundary of the first sorted array's part
+     * @param mid   top boundary of the first sorted array's part and bottom boundary of the second one
+     * @param hi    top boundary of the second sorted array's part
      * @param c     given {@code Comparator} used for ordering of the items in array
      * @param <T>   generic data type
      */
@@ -180,8 +180,8 @@ public class Fast {
      * Sorts the part of the array using Insertion Sort algorithm
      *
      * @param array      given array for sorting
-     * @param lo         low boundary of array's part to be sorted
-     * @param hi         bottom boundary of array's part to be sorted
+     * @param lo         bottom boundary of array's part to be sorted
+     * @param hi         top boundary of array's part to be sorted
      * @param comparator given {@code Comparator} used for ordering of the items in array
      * @param <T>        generic data type
      */
