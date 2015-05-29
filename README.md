@@ -25,7 +25,7 @@ Week 3 - Collinear Points
 Week 4 - 8 Puzzle (IN PROGRESS)
 -----------------
  - **Board.java** - Represents a sliding puzzle board.
- - **Solver.java** - Uses A* and to find solution to the puzzle board.
+ - **Solver.java** - Uses A* algorithm to find solution to the puzzle board.
 
 Week 5 - KdTree (NOT IMPLEMENTED YET)
 ---------------
