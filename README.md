@@ -22,12 +22,12 @@ Week 3 - Collinear Points
  - **Brute.java** - A n^4 alg for calculating 4 collinear points.
  - **Fast.java** - A fast implementation for finding collinear points.
 
-Week 4 - 8 Puzzle (IN PROGRESS)
+Week 4 - 8 Puzzle
 -----------------
  - **Board.java** - Represents a sliding puzzle board.
  - **Solver.java** - Uses A* algorithm to find solution to the puzzle board.
 
-Week 5 - KdTree (NOT IMPLEMENTED YET)
+Week 5 - KdTree (IN PROGRESS)
 ---------------
  - **PointSet.java** - A set of points on a 2D Euclidian plane, some simple function like nearest and contains.
  - **kDTree.java** - Uses a 2d tree to more efficiently perform functions such as nearest and contains.
