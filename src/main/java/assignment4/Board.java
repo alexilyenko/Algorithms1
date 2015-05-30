@@ -47,6 +47,11 @@ public class Board {
     private Block zeroBlock;
 
     /**
+     * The number of moves made on the board
+     */
+    private int moves = 0;
+
+    /**
      * Constructs a board from an N-by-N array of blocks,
      * where blocks[i][j] = block in row i, column j
      *
@@ -73,9 +78,10 @@ public class Board {
      * @see #twin()
      * @see #neighbors()
      */
-    private Board(byte[][] blocks) {
+    private Board(byte[][] blocks, int moves) {
         tiles = blocks;
         N = blocks.length;
+        this.moves = moves;
     }
 
 
@@ -124,7 +130,7 @@ public class Board {
      * @see #hamming()
      */
     private int calcHamming() {
-        int hamming = 0;
+        int hamming = moves;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 // last tile is the place for empty block
@@ -174,7 +180,7 @@ public class Board {
      * @see #manhattan()
      */
     private int calcManhattan() {
-        int manhattan = 0;
+        int manhattan = moves;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (tiles[i][j] != j + 1 + i * N) {
@@ -250,7 +256,7 @@ public class Board {
             for (int j = 0; j < N - 1; j++) {
                 // finds not empty adjacent blocks
                 if (copy[i][j] > 0 && copy[i][j + 1] > 0) {
-                    return new Board(exchange(copy, i, j, i, j + 1));
+                    return new Board(exchange(copy, i, j, i, j + 1), moves);
                 }
             }
         }
@@ -308,23 +314,24 @@ public class Board {
     public Iterable<Board> neighbors() {
         Set<Board> boardSet = new HashSet<>();
         Block zero = getZeroBlock();
+        moves++;
         if (zero.x + 1 < N) {
             boardSet.add(new Board(exchange(cloneTiles(), zero.y,
-                    zero.x, zero.y, zero.x + 1)));
+                    zero.x, zero.y, zero.x + 1), moves));
         }
         if (zero.x - 1 >= 0) {
             boardSet.add(new Board(exchange(cloneTiles(), zero.y,
-                    zero.x, zero.y, zero.x - 1)));
+                    zero.x, zero.y, zero.x - 1), moves));
         }
 
-        if (zero.y + 1 >= 0) {
+        if (zero.y + 1 < N) {
             boardSet.add(new Board(exchange(cloneTiles(), zero.y,
-                    zero.x, zero.y + 1, zero.x)));
+                    zero.x, zero.y + 1, zero.x), moves));
         }
 
         if (zero.y - 1 >= 0) {
             boardSet.add(new Board(exchange(cloneTiles(), zero.y,
-                    zero.x, zero.y - 1, zero.x)));
+                    zero.x, zero.y - 1, zero.x), moves));
         }
         return boardSet;
     }
