@@ -17,7 +17,7 @@ Week 2 - Queues, Stacks and Bags
 Week 3 - Collinear Points
 --------------------------------
  - **Point.java** - A simple point class.
- - **Brute.java** - A n^4 algorithm for calculating 4 collinear points.
+ - **Brute.java** - A N^4 algorithm for calculating 4 collinear points.
  - **Fast.java** - A faster implementation (N^2*log N) for finding collinear points.
 
 Week 4 - 8 Puzzle
