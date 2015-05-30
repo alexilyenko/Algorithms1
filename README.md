@@ -29,5 +29,5 @@ Week 5 - KdTree (IN PROGRESS)
 --------------------------------
  - **PointSet.java** - A set of points on a 2D Euclidian plane, some simple function like nearest and contains.
  - **kDTree.java** - Uses a 2d tree to more efficiently perform functions such as nearest and contains.
---------------------------------
+
 Requires the stdlib.jar and algs4.jar to run, available in Maven repository. See given pom file.
