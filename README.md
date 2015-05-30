@@ -18,7 +18,7 @@ Week 3 - Collinear Points
 --------------------------------
  - **Point.java** - A simple point class.
  - **Brute.java** - A n^4 algorithm for calculating 4 collinear points.
- - **Fast.java** - A faster implementation for finding collinear points.
+ - **Fast.java** - A faster implementation (N^2*log N) for finding collinear points.
 
 Week 4 - 8 Puzzle
 --------------------------------
