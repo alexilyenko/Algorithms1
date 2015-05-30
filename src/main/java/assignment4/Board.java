@@ -6,12 +6,9 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Data structure representing the state of a 2d NxN puzzle board for so name 'Puzzle problem'
- * which can be solved using A* search algorithm
+ * Data structure representing the state of a two-dimensional NxN sliding puzzle board
  *
  * @author Alex Ilyenko
- * @see <a href="http://en.wikipedia.org/wiki/A*_search_algorithm">A* search algorithm on Wikipedia</a>
- * @see <a href="http://en.wikipedia.org/wiki/15_puzzle">Puzzle problem on Wikipedia</a>
  */
 public class Board {
     /**
@@ -98,7 +95,8 @@ public class Board {
     /**
      * Calculates Hamming priority function.
      * <p>
-     * Explanation of the function: The number of blocks in the wrong position, plus the
+     * Explanation of the function:
+     * The number of blocks in the wrong position, plus the
      * number of moves made so far to get to the search node. Intuitively, a search node
      * with a small number of blocks in the wrong position is close to the goal, and we
      * prefer a search node that have been reached using a small number of moves.
@@ -148,6 +146,7 @@ public class Board {
     /**
      * Calculates Manhattan priority function.
      * <p>
+     * Explanation of the function:
      * The sum of the Manhattan distances (sum of the vertical and horizontal distance) from
      * the blocks to their goal positions, plus the number of moves made so far to get to
      * the search node.

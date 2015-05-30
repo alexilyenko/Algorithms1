@@ -8,12 +8,13 @@ import java.util.Comparator;
 import java.util.LinkedList;
 
 /**
- * This class's main goal is to solve the so called 'Puzzle Problem' using A* search algorithm.
- * The solving method based on Manhattan priority function calculation of the puzzle board.
+ * Solver class's main goal is to solve the so called 'Puzzle Problem' using A* search algorithm.
+ * The solving method is based on Manhattan priority function calculation for the given puzzle board.
  *
  * @author Alex Ilyenko
  * @see <a href="http://en.wikipedia.org/wiki/A*_search_algorithm">A* search algorithm on Wikipedia</a>
  * @see <a href="http://en.wikipedia.org/wiki/15_puzzle">Puzzle problem on Wikipedia</a>
+ * @see Board#manhattan()
  */
 public class Solver {
     /**
