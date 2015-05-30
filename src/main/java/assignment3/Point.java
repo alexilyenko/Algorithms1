@@ -12,6 +12,14 @@ import java.util.Comparator;
  */
 public class Point implements Comparable<Point> {
     /**
+     * x coordinate of the {@code Point}
+     */
+    private final int x;
+    /**
+     * y coordinate of the {@code Point}
+     */
+    private final int y;
+    /**
      * Custom comparator for comparing {@code Point}s by their slopes to each other
      *
      * @see #slopeTo(Point)
@@ -24,14 +32,6 @@ public class Point implements Comparable<Point> {
         if (slope1 < slope2) return -1;
         return 1;
     };
-    /**
-     * x coordinate of the {@code Point}
-     */
-    private final int x;
-    /**
-     * y coordinate of the {@code Point}
-     */
-    private final int y;
 
     public Point(int x, int y) {
         this.x = x;

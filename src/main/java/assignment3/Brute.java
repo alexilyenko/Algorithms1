@@ -11,9 +11,9 @@ import java.util.Arrays;
  * line segment, printing out any such line segments to standard output and drawing them using standard drawing.
  * To check whether the 4 points p, q, r, and s are collinear, the program checks whether the slopes between p and q,
  * between p and r, and between p and s are all equal.
- * <p/>
+ * <p>
  * The order of growth of the running time of this program is N^4 in the worst case and it uses space proportional to N.
- * <p/>
+ * <p>
  * The program takes the name of an input file as a command-line argument, reads the input
  * file (see resources folder for examples), prints to standard output the line segments
  * discovered and draws to standard draw the line segments discovered.

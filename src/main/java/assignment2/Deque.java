@@ -45,6 +45,34 @@ public class Deque<Item> implements Iterable<Item> {
         lastPosition = 1;
     }
 
+    public static void main(String[] args) {
+        Deque<Integer> deque = new Deque<>();
+        for (int i = 0; i < 12; i++) {
+            if (i % 2 == 0) {
+                deque.addFirst(i);
+            } else {
+                deque.addLast(i);
+            }
+        }
+        StdOut.println(deque.size());
+        for (int i = 0; i < 12; i++) {
+            if (i % 3 == 0) {
+                deque.removeLast();
+            } else {
+                deque.removeFirst();
+            }
+        }
+        StdOut.println(deque.size());
+        for (int i = 0; i < 12; i++) {
+            if (i % 2 == 0) {
+                deque.addFirst(i);
+            } else {
+                deque.addLast(i);
+            }
+        }
+        StdOut.println(deque.size());
+    }
+
     /**
      * Checks if {@code Deque} is empty
      *
@@ -259,33 +287,5 @@ public class Deque<Item> implements Iterable<Item> {
          * Both sides
          */
         BOTH
-    }
-
-    public static void main(String[] args) {
-        Deque<Integer> deque = new Deque<>();
-        for (int i = 0; i < 12; i++) {
-            if (i % 2 == 0) {
-                deque.addFirst(i);
-            } else {
-                deque.addLast(i);
-            }
-        }
-        StdOut.println(deque.size());
-        for (int i = 0; i < 12; i++) {
-            if (i % 3 == 0) {
-                deque.removeLast();
-            } else {
-                deque.removeFirst();
-            }
-        }
-        StdOut.println(deque.size());
-        for (int i = 0; i < 12; i++) {
-            if (i % 2 == 0) {
-                deque.addFirst(i);
-            } else {
-                deque.addLast(i);
-            }
-        }
-        StdOut.println(deque.size());
     }
 }

@@ -57,6 +57,33 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         this.count = count;
     }
 
+    public static void main(String[] args) {
+        RandomizedQueue<Integer> randomizedQueue = new RandomizedQueue<>();
+        StdOut.println("Queue is empty: " + randomizedQueue.isEmpty());
+        for (int i = 0; i < 30; i++) {
+            randomizedQueue.enqueue(i);
+            if (i % 3 == 0) {
+                randomizedQueue.dequeue();
+            }
+        }
+        StdOut.println("Size: " + randomizedQueue.size());
+        int i = 0;
+        for (Integer a : randomizedQueue) {
+            StdOut.print(a + " ");
+            i++;
+        }
+        StdOut.println();
+        StdOut.println("Number of iterations: " + i);
+        for (Integer a : randomizedQueue) {
+            StdOut.print(a + " ");
+        }
+        StdOut.println();
+        StdOut.print("Random pick ups: ");
+        for (int j = 0; j < 5; j++) {
+            StdOut.print(randomizedQueue.sample() + " ");
+        }
+    }
+
     /**
      * Checks if {@code RandomizedQueue} is empty
      *
@@ -209,32 +236,5 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             throw new UnsupportedOperationException("Remove action is not supported!");
         }
 
-    }
-
-    public static void main(String[] args) {
-        RandomizedQueue<Integer> randomizedQueue = new RandomizedQueue<>();
-        StdOut.println("Queue is empty: " + randomizedQueue.isEmpty());
-        for (int i = 0; i < 30; i++) {
-            randomizedQueue.enqueue(i);
-            if (i % 3 == 0) {
-                randomizedQueue.dequeue();
-            }
-        }
-        StdOut.println("Size: " + randomizedQueue.size());
-        int i = 0;
-        for (Integer a : randomizedQueue) {
-            StdOut.print(a + " ");
-            i++;
-        }
-        StdOut.println();
-        StdOut.println("Number of iterations: " + i);
-        for (Integer a : randomizedQueue) {
-            StdOut.print(a + " ");
-        }
-        StdOut.println();
-        StdOut.print("Random pick ups: ");
-        for (int j = 0; j < 5; j++) {
-            StdOut.print(randomizedQueue.sample() + " ");
-        }
     }
 }

@@ -9,18 +9,18 @@ import edu.princeton.cs.introcs.StdOut;
  * Each item from the sequence can be printed out at most once.
  * Assume that 0 ≤ k ≤ N, where N is the number of string on standard input.
  * Examples of input and output:
- * <p/>
+ * <p>
  * % echo A B C D E F G H I | java Subset 3
  * C
  * G
  * A
  * CC
- * <p/>
+ * <p>
  * % echo A B C D E F G H I | java Subset 3
  * E
  * F
  * G
- * <p/>
+ * <p>
  * % echo AA BB BB BB BB BB CC CC | java Subset 8
  * BB
  * AA

@@ -5,23 +5,22 @@ import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdOut;
 
 /****************************************************************************
- *  Compilation:  javac src.ProgrammingAssignment1.InteractivePercolationVisualizer.java
- *  Execution:    java src.ProgrammingAssignment1.InteractivePercolationVisualizer N
- *  Dependencies: src.ProgrammingAssignment1.PercolationVisualizer.java src.ProgrammingAssignment1.Percolation.java
- *                StdDraw.java StdOut.java
- *
- *  This program takes the grid size N as a command-line argument.
- *  Then, the user repeatedly clicks sites to open with the mouse.
- *  After each site is opened, it draws full sites in light blue,
- *  open sites (that aren't full) in white, and blocked sites in black.
- *
+ * Compilation:  javac src.ProgrammingAssignment1.InteractivePercolationVisualizer.java
+ * Execution:    java src.ProgrammingAssignment1.InteractivePercolationVisualizer N
+ * Dependencies: src.ProgrammingAssignment1.PercolationVisualizer.java src.ProgrammingAssignment1.Percolation.java
+ * StdDraw.java StdOut.java
+ * <p>
+ * This program takes the grid size N as a command-line argument.
+ * Then, the user repeatedly clicks sites to open with the mouse.
+ * After each site is opened, it draws full sites in light blue,
+ * open sites (that aren't full) in white, and blocked sites in black.
  ****************************************************************************/
 
 public class InteractivePercolationVisualizer {
 
     public static void main(String[] args) {
         // N-by-N percolation system (read from command-line, default = 10)
-        int N = 10;          
+        int N = 10;
         if (args.length == 1) N = Integer.parseInt(args[0]);
 
         // repeatedly open site specified my mouse click and draw resulting system
@@ -47,7 +46,7 @@ public class InteractivePercolationVisualizer {
 
                 // open site (i, j) provided it's in bounds
                 if (i >= 1 && i <= N && j >= 1 && j <= N) {
-                    if (!perc.isOpen(i, j)) { 
+                    if (!perc.isOpen(i, j)) {
                         StdOut.println(i + " " + j);
                     }
                     perc.open(i, j);
