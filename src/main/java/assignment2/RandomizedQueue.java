@@ -223,8 +223,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
         StdOut.println("Size: " + randomizedQueue.size());
         StreamSupport.stream(randomizedQueue.spliterator(), false)
-                .map(a -> a + " ")
-                .forEach(StdOut::print);
+                .forEach(a -> StdOut.print(a + " "));
         StdOut.println();
         StdOut.print("Random pick ups: ");
         for (int j = 0; j < 5; j++) {
