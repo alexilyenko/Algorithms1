@@ -2,6 +2,8 @@ package assignment1;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
+import java.util.Arrays;
+
 /**
  * This class solves the "real world" Percolation problem
  * using weighted quick union-find algorithm
@@ -71,7 +73,7 @@ public class Percolation {
      * @param x column index
      * @see #validate(int, int)
      * @see WeightedQuickUnionUF#union(int, int)
-     * @see #connectIfIsOpened(int, int)
+     * @see #connectIfIsOpened(int, int...)
      */
     public void open(int y, int x) {
         validate(x, y);
@@ -86,11 +88,7 @@ public class Percolation {
         } else if (y == N) {
             weightedQuickUnionUF.union(index, secondReserved);
         }
-        connectIfIsOpened(index, right);
-        connectIfIsOpened(index, left);
-        connectIfIsOpened(index, up);
-        connectIfIsOpened(index, up);
-        connectIfIsOpened(index, down);
+        connectIfIsOpened(index, right, left, up, down);
     }
 
 
@@ -122,15 +120,15 @@ public class Percolation {
     /**
      * Connects two sites if they are both opened
      *
-     * @param first  index of the first site in 1D array
-     * @param second index of the second site in 1D array
+     * @param main  index of the first site in 1D array
+     * @param others index of the neighboring sites in 1D array
      * @see #neighbourIsOpened(int, int)
      * @see WeightedQuickUnionUF#union(int, int)
      */
-    private void connectIfIsOpened(int first, int second) {
-        if (neighbourIsOpened(first, second)) {
-            weightedQuickUnionUF.union(first, second);
-        }
+    private void connectIfIsOpened(int main, int... others) {
+        Arrays.stream(others)
+                .filter(site -> neighbourIsOpened(main, site))
+                .forEach(site -> weightedQuickUnionUF.union(main, site));
     }
 
     /**

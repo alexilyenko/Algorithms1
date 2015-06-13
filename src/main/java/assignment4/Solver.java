@@ -116,6 +116,7 @@ public class Solver {
             solved = current;
             return true;
         }
+
         for (Board board : current.board.neighbors()) {
             if (current.parent == null || !board.equals(current.parent.board)) {
                 moves.insert(new Node(board, current));
@@ -210,8 +211,7 @@ public class Solver {
             StdOut.println("No solution possible");
         else {
             StdOut.println("Minimum number of moves = " + solver.moves());
-            for (Board board : solver.solution())
-                StdOut.println(board);
+            solver.solution().forEach(StdOut::println);
         }
     }
 

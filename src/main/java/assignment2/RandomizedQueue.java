@@ -5,6 +5,7 @@ import edu.princeton.cs.introcs.StdRandom;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.stream.StreamSupport;
 
 /**
  * Generic data type representing randomized queue which is similar to a stack or queue,
@@ -55,33 +56,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         items = (Item[]) new Object[length];
         System.arraycopy(array, 0, items, 0, length);
         this.count = count;
-    }
-
-    public static void main(String[] args) {
-        RandomizedQueue<Integer> randomizedQueue = new RandomizedQueue<>();
-        StdOut.println("Queue is empty: " + randomizedQueue.isEmpty());
-        for (int i = 0; i < 30; i++) {
-            randomizedQueue.enqueue(i);
-            if (i % 3 == 0) {
-                randomizedQueue.dequeue();
-            }
-        }
-        StdOut.println("Size: " + randomizedQueue.size());
-        int i = 0;
-        for (Integer a : randomizedQueue) {
-            StdOut.print(a + " ");
-            i++;
-        }
-        StdOut.println();
-        StdOut.println("Number of iterations: " + i);
-        for (Integer a : randomizedQueue) {
-            StdOut.print(a + " ");
-        }
-        StdOut.println();
-        StdOut.print("Random pick ups: ");
-        for (int j = 0; j < 5; j++) {
-            StdOut.print(randomizedQueue.sample() + " ");
-        }
     }
 
     /**
@@ -236,5 +210,25 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             throw new UnsupportedOperationException("Remove action is not supported!");
         }
 
+    }
+
+    public static void main(String[] args) {
+        RandomizedQueue<Integer> randomizedQueue = new RandomizedQueue<>();
+        StdOut.println("Queue is empty: " + randomizedQueue.isEmpty());
+        for (int i = 0; i < 30; i++) {
+            randomizedQueue.enqueue(i);
+            if (i % 3 == 0) {
+                randomizedQueue.dequeue();
+            }
+        }
+        StdOut.println("Size: " + randomizedQueue.size());
+        StreamSupport.stream(randomizedQueue.spliterator(), false)
+                .map(a -> a + " ")
+                .forEach(StdOut::print);
+        StdOut.println();
+        StdOut.print("Random pick ups: ");
+        for (int j = 0; j < 5; j++) {
+            StdOut.print(randomizedQueue.sample() + " ");
+        }
     }
 }

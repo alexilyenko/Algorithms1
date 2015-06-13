@@ -45,34 +45,6 @@ public class Deque<Item> implements Iterable<Item> {
         lastPosition = 1;
     }
 
-    public static void main(String[] args) {
-        Deque<Integer> deque = new Deque<>();
-        for (int i = 0; i < 12; i++) {
-            if (i % 2 == 0) {
-                deque.addFirst(i);
-            } else {
-                deque.addLast(i);
-            }
-        }
-        StdOut.println(deque.size());
-        for (int i = 0; i < 12; i++) {
-            if (i % 3 == 0) {
-                deque.removeLast();
-            } else {
-                deque.removeFirst();
-            }
-        }
-        StdOut.println(deque.size());
-        for (int i = 0; i < 12; i++) {
-            if (i % 2 == 0) {
-                deque.addFirst(i);
-            } else {
-                deque.addLast(i);
-            }
-        }
-        StdOut.println(deque.size());
-    }
-
     /**
      * Checks if {@code Deque} is empty
      *
@@ -247,26 +219,33 @@ public class Deque<Item> implements Iterable<Item> {
         int destinationPosition = 0;
         int length = lastPosition;
         int start = 0;
-        if (side == Side.BOTH) {
-            start = firstPosition + 1;
-            destinationPosition = (capacity - itemCount) >> 1;
-            firstPosition = destinationPosition - 1;
-            length = itemCount;
-            lastPosition = destinationPosition + length;
-        } else if (side == Side.FRONT) {
-            if (capacity < items.length) {
-                start = firstPosition;
-                int difference = items.length - capacity;
-                firstPosition -= difference;
-                lastPosition -= difference;
-                destinationPosition = firstPosition;
-                length = itemCount + 1;
-            } else {
-                firstPosition = itemCount - 1;
-                lastPosition += itemCount;
-                destinationPosition = length = itemCount;
-            }
+        switch (side){
+            case BOTH :
+                start = firstPosition + 1;
+                destinationPosition = (capacity - itemCount) >> 1;
+                firstPosition = destinationPosition - 1;
+                length = itemCount;
+                lastPosition = destinationPosition + length;
+                break;
+            case FRONT:
+                if (capacity < items.length) {
+                    start = firstPosition;
+                    int difference = items.length - capacity;
+                    firstPosition -= difference;
+                    lastPosition -= difference;
+                    destinationPosition = firstPosition;
+                    length = itemCount + 1;
+                } else {
+                    firstPosition = itemCount - 1;
+                    lastPosition += itemCount;
+                    destinationPosition = length = itemCount;
+                }
+                break;
+            default:
+                // no actions required if side is END
+                break;
         }
+
         System.arraycopy(items, start, tmpArr, destinationPosition, length);
         items = tmpArr;
     }
@@ -288,4 +267,33 @@ public class Deque<Item> implements Iterable<Item> {
          */
         BOTH
     }
+
+    public static void main(String[] args) {
+        Deque<Integer> deque = new Deque<>();
+        for (int i = 0; i < 12; i++) {
+            if (i % 2 == 0) {
+                deque.addFirst(i);
+            } else {
+                deque.addLast(i);
+            }
+        }
+        StdOut.println(deque.size());
+        for (int i = 0; i < 12; i++) {
+            if (i % 3 == 0) {
+                deque.removeLast();
+            } else {
+                deque.removeFirst();
+            }
+        }
+        StdOut.println(deque.size());
+        for (int i = 0; i < 12; i++) {
+            if (i % 2 == 0) {
+                deque.addFirst(i);
+            } else {
+                deque.addLast(i);
+            }
+        }
+        StdOut.println(deque.size());
+    }
+
 }
