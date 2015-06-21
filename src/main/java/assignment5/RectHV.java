@@ -57,7 +57,7 @@ public class RectHV {
      */
     public double xmin() {
         return xMin;
-    }                           // minimum x-coordinate of rectangle
+    }
 
     /**
      * Minimum Y getter
@@ -66,7 +66,7 @@ public class RectHV {
      */
     public double ymin() {
         return yMin;
-    }                 // minimum y-coordinate of rectangle
+    }
 
     /**
      * Maximum X getter
@@ -75,7 +75,7 @@ public class RectHV {
      */
     public double xmax() {
         return xMax;
-    }                            // maximum x-coordinate of rectangle
+    }
 
     /**
      * Maximum Y getter
@@ -84,7 +84,7 @@ public class RectHV {
      */
     public double ymax() {
         return yMax;
-    }                            // maximum y-coordinate of rectangle
+    }
 
     /**
      * Shows if rectangle contains given point either inside or on boundaries
@@ -157,7 +157,7 @@ public class RectHV {
         final RectHV thatRect = (RectHV) that;
         return xMax == thatRect.xMax && xMin == thatRect.xMin
                 && yMax == thatRect.yMax && yMin == thatRect.yMin;
-    }              // does this rectangle equal that?
+    }              
 
     @Override
     public int hashCode() {
