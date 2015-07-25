@@ -404,16 +404,6 @@ public class Board {
     }
 
     /**
-     * Returns hash code of the current {@code Board} based on its blocks
-     *
-     * @return {@code int} value representing hash code of the current object
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(tiles);
-    }
-
-    /**
      * Returns String representation of the current {@code Board}
      * Example of result String for 3x3 size board:
      * <p>
@@ -433,10 +423,6 @@ public class Board {
         stringBuilder.append(N).append("\n");
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if (tiles[i][j] == 0) {
-                    stringBuilder.append("   ");
-                    continue;
-                }
                 stringBuilder.append(String.format("%2d ", tiles[i][j]));
             }
             stringBuilder.append("\n");

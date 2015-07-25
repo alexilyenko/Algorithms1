@@ -20,4 +20,28 @@ import edu.princeton.cs.algs4.Point2D;
  * @see <a href="https://en.wikipedia.org/wiki/K-d_tree">k-d tree structures on Wikipedia</a>
  */
 public class KdTree {
+    public void insert(Point2D p) {
+    }
+
+    public void draw() {
+
+    }
+
+    public Point2D nearest(Point2D query) {
+        return null;
+    }
+
+    public Point2D[] range(RectHV rect) {
+
+        return null;
+    }
+
+    private static class Node {
+        private Point2D p;      // the point
+        private RectHV rect;    // the axis-aligned rectangle corresponding to this node
+        private Node lb;        // the left/bottom subtree
+        private Node rt;        // the right/top subtree
+    }
+
+
 }
