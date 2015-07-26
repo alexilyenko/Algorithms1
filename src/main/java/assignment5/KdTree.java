@@ -43,20 +43,12 @@ public class KdTree {
 
     private static final RectHV FIELD = new RectHV(0, 0, 1, 1);
     private Node root;
-    private int size;
-
-    /**
-     * Constructs an empty Kd Tree
-     */
-    public KdTree() {
-        this.size = 0;
-        this.root = null;
-    }
+    private int size = 0;
 
     /**
      * Shows if the Kd Tree of points empty
      *
-     * @return <tt>true</tt> if this set contains no elements, otherwise - <tt>false</tt>
+     * @return <tt>true</tt> if this Kd Tree contains no elements, otherwise - <tt>false</tt>
      */
     public boolean isEmpty() {
         return this.size == 0;
@@ -65,14 +57,14 @@ public class KdTree {
     /**
      * Indicates the number of points in the Kd Tree
      *
-     * @return the number of points int the set
+     * @return the number of points in the set
      */
     public int size() {
         return this.size;
     }
 
     /**
-     * Adds given point to the Kd Tree if it's not already there
+     * Adds given point to Kd Tree if it's not already there
      *
      * @param p {@code Point2D} representing given point
      * @see Point2D
@@ -94,8 +86,7 @@ public class KdTree {
         }
 
         // insert it where corresponds (left - right recursive call)  
-        if (node.isVertical && p.x() < node.x || !node.isVertical
-                && p.y() < node.y) {
+        if (node.isVertical && p.x() < node.x || !node.isVertical && p.y() < node.y) {
             node.leftNode = insert(node.leftNode, p, !node.isVertical);
         } else {
             node.rightNode = insert(node.rightNode, p, !node.isVertical);
@@ -124,13 +115,12 @@ public class KdTree {
 
         if (node.isVertical && x < node.x || !node.isVertical && y < node.y) {
             return contains(node.leftNode, x, y);
-        } else {
-            return contains(node.rightNode, x, y);
         }
+        return contains(node.rightNode, x, y);
     }
 
     /**
-     * Draws all of the points in the set to standard draw output
+     * Draws all of the points in Kd Tree to standard draw output
      */
     public void draw() {
         StdDraw.setScale(0, 1);
@@ -188,7 +178,7 @@ public class KdTree {
     }
 
     /**
-     * Returns all points int the set which are inside given rectangle
+     * Returns all points in Kd Tree which are inside given rectangle
      *
      * @param rect {@code RectHW} representing given rectangle
      * @return {@code Iterable<Point2D>} with the set of points in the rectangle
@@ -217,10 +207,10 @@ public class KdTree {
     }
 
     /**
-     * Finds the nearest neighbor of the given point in the set
+     * Finds the nearest neighbor of the given point in Kd Tree
      *
      * @param p {@code Point2D} representing given point
-     * @return nearest neighboring point of <tt>null</tt> if set is empty
+     * @return nearest neighboring point of <tt>null</tt> if Kd Tree is empty
      */
     public Point2D nearest(Point2D p) {
         return nearest(root, FIELD, p.x(), p.y(), null);

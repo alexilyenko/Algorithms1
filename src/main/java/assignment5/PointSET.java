@@ -22,14 +22,7 @@ public class PointSET {
     /**
      * Points in the unit square
      */
-    private final Set<Point2D> points;
-
-    /**
-     * Constructs an empty set of points
-     */
-    public PointSET() {
-        points = new TreeSet<>();
-    }
+    private final Set<Point2D> points = new TreeSet<>();
 
     /**
      * Shows if the set of points empty
@@ -43,7 +36,7 @@ public class PointSET {
     /**
      * Indicates the number of points in the set
      *
-     * @return the number of points int the set
+     * @return the number of points in the set
      */
     public int size() {
         return points.size();
@@ -79,7 +72,7 @@ public class PointSET {
     }
 
     /**
-     * Returns all points int the set which are inside given rectangle
+     * Returns all points in the set which are inside given rectangle
      *
      * @param rect {@code RectHW} representing given rectangle
      * @return {@code Iterable<Point2D>} with the set of points in the rectangle
