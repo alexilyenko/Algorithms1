@@ -11,22 +11,8 @@ import java.util.Objects;
  * @author Alex Ilyenko
  */
 public class RectHV {
-    /**
-     * Minimum abscissa point of the rectangle
-     */
-    private final double xMin;
-    /**
-     * Maximum abscissa point of the rectangle
-     */
-    private final double xMax;
-    /**
-     * Minimum ordinate point of the rectangle
-     */
-    private final double yMin;
-    /**
-     * Maximum ordinate point of the rectangle
-     */
-    private final double yMax;
+    private final double xmin, ymin; // minimum x- and y-coordinates  
+    private final double xmax, ymax; // maximum x- and y-coordinates  
 
     /**
      * Constructs the 2D axis-aligned rectangle
@@ -38,64 +24,39 @@ public class RectHV {
      * @throws IllegalArgumentException if either xMin > xMax or yMin > yMax
      */
     public RectHV(double xmin, double ymin, double xmax, double ymax) {
-        if (xmin > xmax || ymin > ymax) {
+        if (xmax < xmin || ymax < ymin) {
             throw new IllegalArgumentException("Min point should not be more than max point!\n" +
                     "xMin: " + xmin + ", xMax: " + xmax + "\n" +
                     "yMin: " + ymin + ", yMax: " + ymax);
         }
-
-        this.xMax = xmax;
-        this.xMin = xmin;
-        this.yMax = ymax;
-        this.yMin = ymin;
+        this.xmin = xmin;
+        this.ymin = ymin;
+        this.xmax = xmax;
+        this.ymax = ymax;
     }
 
-    /**
-     * Minimum X getter
-     *
-     * @return xMin
-     */
     public double xmin() {
-        return xMin;
+        return xmin;
     }
 
-    /**
-     * Minimum Y getter
-     *
-     * @return yMin
-     */
     public double ymin() {
-        return yMin;
+        return ymin;
     }
 
-    /**
-     * Maximum X getter
-     *
-     * @return xMax
-     */
     public double xmax() {
-        return xMax;
+        return xmax;
     }
 
-    /**
-     * Maximum Y getter
-     *
-     * @return yMax
-     */
     public double ymax() {
-        return yMax;
+        return ymax;
     }
 
-    /**
-     * Shows if rectangle contains given point either inside or on boundaries
-     *
-     * @param p {@code Point} representing given point
-     * @return {@code true} if rectangle contains given point, otherwise {@code false}
-     * @see Point2D
-     */
-    public boolean contains(Point2D p) {
-        return p.x() <= xMax && p.x() >= xMin
-                && p.y() <= yMax && p.y() >= yMin;
+    public double width() {
+        return xmax - xmin;
+    }
+
+    public double height() {
+        return ymax - ymin;
     }
 
     /**
@@ -105,8 +66,20 @@ public class RectHV {
      * @return {@code true} if rectangles intersect, otherwise {@code false}
      */
     public boolean intersects(RectHV that) {
-        return this.xMax >= that.xMin && this.yMax >= that.yMin
-                && that.xMax >= this.xMax && that.yMax >= this.yMin;
+        return this.xmax >= that.xmin && this.ymax >= that.ymin
+                && that.xmax >= this.xmin && that.ymax >= this.ymin;
+    }
+
+    /**
+     * Draws the rectangle
+     *
+     * @see StdDraw#line(double, double, double, double)
+     */
+    public void draw() {
+        StdDraw.line(xmin, ymin, xmax, ymin);
+        StdDraw.line(xmax, ymin, xmax, ymax);
+        StdDraw.line(xmax, ymax, xmin, ymax);
+        StdDraw.line(xmin, ymax, xmin, ymin);
     }
 
     /**
@@ -127,61 +100,55 @@ public class RectHV {
      * @return quadratic distance value
      */
     public double distanceSquaredTo(Point2D p) {
-        double dX = 0;
-        double dY = 0;
-        if (p.x() < xMin) {
-            dX = p.x() - xMin;
-        } else if (p.x() > xMax) {
-            dX = p.x() - xMax;
+        double dx = 0.0, dy = 0.0;
+        if (p.x() < xmin) {
+            dx = p.x() - xmin;
+        } else if (p.x() > xmax) {
+            dx = p.x() - xmax;
         }
-        if (p.y() < yMin) {
-            dY = p.y() - yMin;
-        } else if (p.y() > yMax) {
-            dY = p.y() - yMax;
+        if (p.y() < ymin) {
+            dy = p.y() - ymin;
+        } else if (p.y() > ymax) {
+            dy = p.y() - ymax;
         }
-        return dX * dX + dY * dY;
-    }
-
-
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        final RectHV thatRect = (RectHV) that;
-        return xMax == thatRect.xMax && xMin == thatRect.xMin
-                && yMax == thatRect.yMax && yMin == thatRect.yMin;
-    }              
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(xMax, xMin, yMax, yMin);
+        return dx * dx + dy * dy;
     }
 
     /**
-     * Draws the rectangle
+     * Shows if rectangle contains given point either inside or on boundaries
      *
-     * @see StdDraw#line(double, double, double, double)
+     * @param p {@code Point} representing given point
+     * @return {@code true} if rectangle contains given point, otherwise {@code false}
+     * @see Point2D
      */
-    public void draw() {
-        StdDraw.line(xMin, yMin, xMax, yMin);
-        StdDraw.line(xMin, yMax, xMax, yMax);
-        StdDraw.line(xMax, yMax, xMax, yMin);
-        StdDraw.line(xMin, yMax, xMin, yMin);
+    public boolean contains(Point2D p) {
+        return (p.x() >= xmin) && (p.x() <= xmax) && (p.y() >= ymin)
+                && (p.y() <= ymax);
+    }
+
+    @Override
+    public boolean equals(Object y) {
+        if (y == this) {
+            return true;
+        }
+        if (y == null) {
+            return false;
+        }
+        if (y.getClass() != this.getClass()) {
+            return false;
+        }
+        RectHV that = (RectHV) y;
+        return this.xmin == that.xmin && this.ymin == that.ymin
+                && this.xmax == that.xmax && this.ymax == that.ymax;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(xmax, xmin, ymax, ymin);
     }
 
     @Override
     public String toString() {
-        return "Rectangle: {xMax: " + xMax +
-                ", yMax: " + yMax +
-                ", xMin: " + xMin +
-                ", yMin: " + yMin + "}";
+        return "[" + xmin + ", " + xmax + "] x [" + ymin + ", " + ymax + "]";
     }
-
-}
+}  

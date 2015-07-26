@@ -403,6 +403,11 @@ public class Board {
 
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(tiles);
+    }
+
     /**
      * Returns String representation of the current {@code Board}
      * Example of result String for 3x3 size board:

@@ -1,10 +1,7 @@
 package assignment5;
 
 import edu.princeton.cs.algs4.Point2D;
-import edu.princeton.cs.introcs.StdDraw;
-import edu.princeton.cs.introcs.StdRandom;
 
-import java.awt.*;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -75,10 +72,10 @@ public class PointSET {
     /**
      * Draws all of the points in the set to standard draw output
      *
-     * @see StdDraw#point(double, double)
+     * @see Point2D#draw()
      */
     public void draw() {
-        points.forEach(point2D -> StdDraw.point(point2D.x(), point2D.y()));
+        points.forEach(Point2D::draw);
     }
 
     /**
@@ -107,33 +104,4 @@ public class PointSET {
                 .orElse(null);
     }
 
-    public static void main(String[] args) {
-        PointSET pointSET = new PointSET();
-        Point2D p = new Point2D(0.8, 0.3);
-        StdDraw.setPenRadius(0.02);
-
-        // Draws all points and rectangle with Black color
-        StdDraw.setPenColor(Color.BLACK);
-        for (int i = 0; i < 30; i++) {
-            pointSET.insert(new Point2D(StdRandom.uniform(), StdRandom.uniform()));
-        }
-        RectHV rect = new RectHV(0.2, 0.2, 0.6, 0.6);
-        pointSET.draw();
-        rect.draw();
-
-        // Draws all points within rectangle with Green color
-        StdDraw.setPenColor(Color.GREEN);
-        pointSET.range(rect)
-                .forEach(point -> StdDraw.point(point.x(), point.y()));
-
-        // Draws the main point with Red color
-        StdDraw.setPenColor(Color.RED);
-        StdDraw.point(p.x(), p.y());
-
-        // Draws nearest point to main point with Blue color
-        StdDraw.setPenColor(Color.BLUE);
-        StdDraw.point(pointSET.nearest(p).x(), pointSET.nearest(p).y());
-
-        StdDraw.show(0);
-    }
 }
