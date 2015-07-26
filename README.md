@@ -29,6 +29,6 @@ Week 5 - KdTree
 --------------------------------
  - **PointSet.java** - A set of points on a 2D Euclidian plane, some simple function like #nearest and #contains.
  - **KdTree.java** - Uses a 2d tree algorithm to more efficiently perform functions such as #nearest and #contains.
- - **RectHV.java** - Immutable data type representing axis-aligned rectangle
+ - **RectHV.java** - Immutable data type representing axis-aligned rectangle.
 
 Requires the stdlib.jar and algs4.jar to run, available in Maven repository. See given pom file.
