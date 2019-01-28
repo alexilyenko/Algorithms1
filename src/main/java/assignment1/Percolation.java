@@ -162,7 +162,7 @@ public class Percolation {
     }
 
     /**
-     * Converts 2D array indices of the site two 1D array index
+     * Converts 2D array indices of the site to 1D array index
      *
      * @param y row index of the site
      * @param x column index of the site
