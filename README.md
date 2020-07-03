@@ -1,7 +1,7 @@
 Algorithms Part I
 =====================
 
-Code for programming assignments in Java from the Coursera course, Algorithms Part I.
+Code for programming assignments in Java from the Coursera course, [Algorithms Part I](https://www.coursera.org/learn/algorithms-part1).
 
 Week 1 - Union / Percolation
 --------------------------------
